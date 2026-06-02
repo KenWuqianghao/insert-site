@@ -2,6 +2,8 @@
 
 A minimal static landing page for Insert.
 
+Production: https://insert-eosin.vercel.app
+
 ## Local Preview
 
 ```sh
