@@ -2,7 +2,7 @@
 
 A minimal static landing page for Insert.
 
-Production: https://insert-eosin.vercel.app
+Production: https://insert-app.vercel.app
 
 ## Local Preview
 
