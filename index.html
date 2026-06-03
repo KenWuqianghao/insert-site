@@ -23,8 +23,18 @@
           <h1>Insert</h1>
           <p class="lede">A fast clipboard history that lifts from the bottom of your screen, keeps the latest item selected, and gets out of your way when you copy.</p>
           <div class="actions">
-            <a class="button primary" href="https://github.com/KenWuqianghao/Insert/releases/latest">Download</a>
+            <a
+              class="button primary"
+              id="platform-download"
+              href="https://github.com/KenWuqianghao/Insert/releases/download/v1.0.0/Insert-Installer.dmg"
+              data-mac-url="https://github.com/KenWuqianghao/Insert/releases/download/v1.0.0/Insert-Installer.dmg"
+              data-windows-url="https://github.com/KenWuqianghao/insert-windows/releases/download/v1.0.0/Insert-Windows-Setup-1.0.0.exe"
+            >Download for macOS</a>
             <a class="button secondary" href="https://github.com/KenWuqianghao/Insert">GitHub</a>
+          </div>
+          <div class="download-links" aria-label="Platform downloads">
+            <a href="https://github.com/KenWuqianghao/Insert/releases/download/v1.0.0/Insert-Installer.dmg">macOS DMG</a>
+            <a href="https://github.com/KenWuqianghao/insert-windows/releases/download/v1.0.0/Insert-Windows-Setup-1.0.0.exe">Windows installer</a>
           </div>
         </div>
         <img class="hero-image" src="/assets/insert-hero.png" alt="Insert clipboard tray preview" />
@@ -56,10 +66,30 @@
 
       <section class="download">
         <h2>Build or install</h2>
-        <p>Download the latest DMG from GitHub Releases, or build locally from source with the included Makefile.</p>
+        <p>Download the macOS DMG or Windows installer from GitHub Releases, or build locally from source with the included Makefile.</p>
         <pre><code>make run
 make dmg</code></pre>
       </section>
     </main>
+    <script>
+      (() => {
+        const button = document.getElementById("platform-download");
+        if (!button) return;
+
+        const userAgent = navigator.userAgentData?.platform || navigator.platform || navigator.userAgent || "";
+        const platform = userAgent.toLowerCase();
+
+        if (platform.includes("win")) {
+          button.href = button.dataset.windowsUrl;
+          button.textContent = "Download for Windows";
+          return;
+        }
+
+        if (platform.includes("mac")) {
+          button.href = button.dataset.macUrl;
+          button.textContent = "Download for macOS";
+        }
+      })();
+    </script>
   </body>
 </html>

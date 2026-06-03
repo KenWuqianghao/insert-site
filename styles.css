@@ -104,6 +104,24 @@ h2 {
   background: #fff;
 }
 
+.download-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 16px;
+  font-size: 14px;
+}
+
+.download-links a {
+  color: #3f7055;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.download-links a:hover {
+  text-decoration: underline;
+}
+
 .hero-image,
 .screenshot img {
   width: 100%;
