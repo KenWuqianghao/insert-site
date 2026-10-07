@@ -6,89 +6,226 @@
     <title>Insert - Native clipboard tray for macOS</title>
     <meta
       name="description"
-      content="Insert is a minimal native clipboard tray for macOS with search, keyboard navigation, persistent history, and a bottom-of-screen card interface."
+      content="Insert is a native clipboard tray for macOS. Press the shortcut, select a clip, and Insert pastes it into the app that you use. No account and no cloud sync."
     />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://insert-app.vercel.app/" />
     <meta property="og:title" content="Insert" />
-    <meta property="og:description" content="A native clipboard tray that lifts from the bottom of your screen." />
-    <meta property="og:image" content="/assets/insert-hero.png" />
+    <meta property="og:description" content="A native clipboard tray for macOS. Press the shortcut, select a clip, and paste." />
+    <meta property="og:image" content="https://insert-app.vercel.app/assets/insert-og.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="theme-color" content="#15132a" />
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon.png" />
     <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
+    <link rel="preload" href="/assets/fonts/schibsted-grotesk.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="stylesheet" href="/styles.css" />
   </head>
   <body>
+    <header class="topbar wrap">
+      <a class="brand" href="/">
+        <img src="/assets/insert-icon.webp" alt="" width="32" height="32" />
+        Insert
+      </a>
+      <nav aria-label="Main">
+        <a href="#shortcuts">Shortcuts</a>
+        <a href="https://github.com/KenWuqianghao/Insert">GitHub</a>
+        <a class="button small" href="#download">Download</a>
+      </nav>
+    </header>
+
     <main>
-      <section class="hero">
-        <div class="hero-copy">
-          <p class="eyebrow">Native macOS clipboard tray</p>
-          <h1>Insert</h1>
-          <p class="lede">A fast clipboard history that lifts from the bottom of your screen, keeps the latest item selected, and gets out of your way when you copy.</p>
+      <section class="hero wrap">
+        <h1>
+          <span class="line">Press <kbd aria-label="Shift">⇧</kbd><kbd aria-label="Command">⌘</kbd><kbd>V</kbd>.</span>
+          <span class="line">Select a clip.</span>
+          <span class="line">Paste.</span>
+        </h1>
+        <div class="hero-side">
+          <p class="lede">Insert is a native clipboard tray for macOS. It keeps the items that you copy and pastes them into the app that you use.</p>
           <div class="actions">
             <a
               class="button primary"
               id="platform-download"
-              href="https://github.com/KenWuqianghao/Insert/releases/download/v1.0.0/Insert-Installer.dmg"
-              data-mac-url="https://github.com/KenWuqianghao/Insert/releases/download/v1.0.0/Insert-Installer.dmg"
-              data-windows-url="https://github.com/KenWuqianghao/insert-windows/releases/download/v1.0.0/Insert-Windows-Setup-1.0.0.exe"
+              href="https://github.com/KenWuqianghao/Insert/releases/latest/download/Insert-Installer.dmg"
+              data-windows-url="https://github.com/KenWuqianghao/insert-windows/releases/latest"
             >Download for macOS</a>
-            <a class="button secondary" href="https://github.com/KenWuqianghao/Insert">GitHub</a>
+            <a class="button" href="https://github.com/KenWuqianghao/Insert">View the source</a>
           </div>
-          <div class="download-links" aria-label="Platform downloads">
-            <a href="https://github.com/KenWuqianghao/Insert/releases/download/v1.0.0/Insert-Installer.dmg">macOS DMG</a>
-            <a href="https://github.com/KenWuqianghao/insert-windows/releases/download/v1.0.0/Insert-Windows-Setup-1.0.0.exe">Windows installer</a>
+          <p class="fineprint">Free and open source. No account. No cloud sync.</p>
+        </div>
+      </section>
+
+      <section class="demo wrap" aria-labelledby="demo-title">
+        <h2 id="demo-title" class="visually-hidden">Demo</h2>
+        <div class="stage">
+          <video
+            id="demo-video"
+            src="/assets/insert-demo.mp4"
+            poster="/assets/insert-tray.webp"
+            width="1920"
+            height="1080"
+            autoplay
+            muted
+            loop
+            playsinline
+            controls
+            preload="metadata"
+            aria-describedby="demo-steps"
+          ></video>
+        </div>
+        <ol class="steps" id="demo-steps">
+          <li><button type="button" data-at="0.6"><span>Press <kbd>⇧</kbd><kbd>⌘</kbd><kbd>V</kbd> to open the tray.</span></button></li>
+          <li><button type="button" data-at="2.2"><span>Press the arrow keys to move. Press <kbd>Space</kbd> to see a large preview.</span></button></li>
+          <li><button type="button" data-at="7.2"><span>Press <kbd>⌫</kbd> to delete a clip.</span></button></li>
+          <li><button type="button" data-at="9.2"><span>Type to search.</span></button></li>
+          <li><button type="button" data-at="12.2"><span>Press <kbd>Tab</kbd> to go to the next pinboard.</span></button></li>
+          <li><button type="button" data-at="15.2"><span>Hold <kbd>⌘</kbd>, then press <kbd>1</kbd> to paste the first card.</span></button></li>
+        </ol>
+      </section>
+
+      <section class="band" aria-labelledby="features-title">
+        <div class="wrap">
+          <h2 id="features-title">A tray of cards at the bottom of the screen</h2>
+          <p class="intro">Each card shows the source app, the type, the time, and a preview of the content. The keyboard does all the work.</p>
+        </div>
+        <div class="tray" role="list">
+          <article class="clip clip-mustard" role="listitem">
+            <header><h3>Paste</h3><kbd>Enter</kbd></header>
+            <p>Insert pastes the selected clip into the active app. The tray closes and you continue your work.</p>
+          </article>
+          <article class="clip clip-blue" role="listitem">
+            <header><h3>Plain text</h3><span><kbd>⇧</kbd><kbd>Enter</kbd></span></header>
+            <p>Paste the clip without its format. The text takes the style of the document that you write.</p>
+          </article>
+          <article class="clip clip-teal" role="listitem">
+            <header><h3>Search</h3><span>Type</span></header>
+            <p>Type in the tray to search. Use the filter to show one type of clip.</p>
+          </article>
+          <article class="clip clip-green" role="listitem">
+            <header><h3>Pinboards</h3><kbd>Tab</kbd></header>
+            <p>Pinboards keep the clips that you use frequently. The history limit does not delete pinned clips.</p>
+          </article>
+          <article class="clip clip-violet" role="listitem">
+            <header><h3>Quick paste</h3><span><kbd>⌘</kbd><kbd>1</kbd> to <kbd>9</kbd></span></header>
+            <p>Hold Command to show the numbers 1 to 9 on the cards. Press a number to paste that card.</p>
+          </article>
+          <article class="clip clip-rose" role="listitem">
+            <header><h3>Multiple clips</h3><span><kbd>⇧</kbd><kbd>→</kbd></span></header>
+            <p>Hold Shift and press the arrow keys to select more than one clip. Delete them together.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="band wrap split" aria-labelledby="preview-title">
+        <div class="split-copy">
+          <h2 id="preview-title">Press Space to see the full clip</h2>
+          <p>The large preview opens above the cards. Move the selection and the preview follows.</p>
+          <p>Insert stores text, links, files, images, PDFs, rich text, colors, and common media types.</p>
+        </div>
+        <img class="shot" src="/assets/insert-preview.webp" alt="The large preview of an image clip, above the row of cards" width="1920" height="1080" loading="lazy" />
+      </section>
+
+      <section class="band wrap split reverse" aria-labelledby="privacy-title">
+        <div class="split-copy">
+          <h2 id="privacy-title">All data stays on your Mac</h2>
+          <ul class="plain">
+            <li>Insert has no account and no cloud sync.</li>
+            <li>Insert skips items that an app marks as concealed or transient, for example passwords from a password manager.</li>
+            <li>You can pause capture at any time.</li>
+            <li>You can ignore the apps that you select.</li>
+            <li>One command clears the history.</li>
+          </ul>
+        </div>
+        <img class="window" src="/assets/insert-settings.webp" alt="The General tab of the Settings window" width="1000" height="752" loading="lazy" />
+      </section>
+
+      <section class="band wrap" id="shortcuts" aria-labelledby="shortcuts-title">
+        <h2 id="shortcuts-title">Shortcuts</h2>
+        <table>
+          <thead>
+            <tr><th scope="col">Action</th><th scope="col">Shortcut</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Open or close Insert</td><td><kbd>⇧</kbd><kbd>⌘</kbd><kbd>V</kbd> You can change this shortcut.</td></tr>
+            <tr><td>Move the selection</td><td>Arrow keys</td></tr>
+            <tr><td>Extend the selection</td><td><kbd>⇧</kbd> and the arrow keys</td></tr>
+            <tr><td>Select all clips</td><td><kbd>⌘</kbd><kbd>A</kbd></td></tr>
+            <tr><td>Paste the selected clip</td><td><kbd>Enter</kbd> or double-click</td></tr>
+            <tr><td>Paste as plain text</td><td><kbd>⇧</kbd><kbd>Enter</kbd></td></tr>
+            <tr><td>Copy without paste</td><td><kbd>⌘</kbd><kbd>C</kbd></td></tr>
+            <tr><td>Paste card 1 to 9</td><td><kbd>⌘</kbd><kbd>1</kbd> to <kbd>⌘</kbd><kbd>9</kbd></td></tr>
+            <tr><td>Preview</td><td><kbd>Space</kbd></td></tr>
+            <tr><td>Delete the selection</td><td><kbd>⌫</kbd> or <kbd>⌘</kbd><kbd>⌫</kbd></td></tr>
+            <tr><td>Go to the next or previous pinboard</td><td><kbd>Tab</kbd> or <kbd>⇧</kbd><kbd>Tab</kbd></td></tr>
+            <tr><td>Close the preview, clear the search, or close the tray</td><td><kbd>Esc</kbd></td></tr>
+            <tr><td>Open Settings</td><td><kbd>⌘</kbd><kbd>,</kbd></td></tr>
+          </tbody>
+        </table>
+        <p class="note">Right-click a card to pin, rename, preview, or delete the clip.</p>
+      </section>
+
+      <section class="band download" id="download" aria-labelledby="download-title">
+        <div class="wrap download-grid">
+          <div>
+            <h2 id="download-title">Download Insert</h2>
+            <p>Insert needs macOS 14 or later. Open the disk image and drag Insert into Applications.</p>
+            <div class="actions">
+              <a class="button primary" href="https://github.com/KenWuqianghao/Insert/releases/latest/download/Insert-Installer.dmg">Download for macOS</a>
+              <a class="button" href="https://github.com/KenWuqianghao/insert-windows/releases/latest">Get the Windows port</a>
+            </div>
+          </div>
+          <div class="notes">
+            <h3>Before the first paste</h3>
+            <p>Insert pastes with a simulated <kbd>⌘</kbd><kbd>V</kbd>. Turn on Insert in System Settings &gt; Privacy &amp; Security &gt; Accessibility. Without this permission, Insert copies the clip and you paste it.</p>
+            <h3>Build from source</h3>
+            <pre><code>git clone https://github.com/KenWuqianghao/Insert
+cd Insert
+make run</code></pre>
           </div>
         </div>
-        <img class="hero-image" src="/assets/insert-hero.png" alt="Insert clipboard tray preview" />
-      </section>
-
-      <section class="feature-strip" aria-label="Features">
-        <div>
-          <strong>Search</strong>
-          <span>Find text, links, files, images, PDFs, HTML, and rich text from your clipboard history.</span>
-        </div>
-        <div>
-          <strong>Keyboard first</strong>
-          <span>Arrow through cards, press Enter or Command+C to copy, and Backspace to delete.</span>
-        </div>
-        <div>
-          <strong>Quiet settings</strong>
-          <span>Customize the global shortcut, hide the Dock icon, and launch at login.</span>
-        </div>
-      </section>
-
-      <section class="screenshot">
-        <div class="section-copy">
-          <p class="eyebrow">Bottom tray</p>
-          <h2>Your clipboard, one shortcut away.</h2>
-          <p>Insert keeps a compact card history below your current work. The newest item is selected automatically, so most copies are a single keystroke.</p>
-        </div>
-        <img src="/assets/insert-tray.png" alt="Insert bottom clipboard tray" />
-      </section>
-
-      <section class="download">
-        <h2>Build or install</h2>
-        <p>Download the macOS DMG or Windows installer from GitHub Releases, or build locally from source with the included Makefile.</p>
-        <pre><code>make run
-make dmg</code></pre>
       </section>
     </main>
+
+    <footer class="footer">
+      <div class="wrap">
+        <span>Insert is open source.</span>
+        <a href="https://github.com/KenWuqianghao/Insert">GitHub</a>
+        <a href="https://github.com/KenWuqianghao/Insert/releases">Releases</a>
+      </div>
+    </footer>
+
     <script>
       (() => {
-        const button = document.getElementById("platform-download");
-        if (!button) return;
-
-        const userAgent = navigator.userAgentData?.platform || navigator.platform || navigator.userAgent || "";
-        const platform = userAgent.toLowerCase();
-
-        if (platform.includes("win")) {
-          button.href = button.dataset.windowsUrl;
-          button.textContent = "Download for Windows";
-          return;
+        const download = document.getElementById("platform-download");
+        const platform = (navigator.userAgentData?.platform || navigator.platform || navigator.userAgent || "").toLowerCase();
+        if (download && platform.includes("win")) {
+          download.href = download.dataset.windowsUrl;
+          download.textContent = "Download for Windows";
         }
 
-        if (platform.includes("mac")) {
-          button.href = button.dataset.macUrl;
-          button.textContent = "Download for macOS";
+        const video = document.getElementById("demo-video");
+        const steps = [...document.querySelectorAll("#demo-steps button")];
+        if (!video || steps.length === 0) return;
+
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+          video.removeAttribute("autoplay");
+          video.pause();
         }
+
+        const starts = steps.map((step) => Number(step.dataset.at));
+        const showStep = () => {
+          const current = starts.findLastIndex((start) => video.currentTime >= start);
+          steps.forEach((step, index) => step.toggleAttribute("aria-current", index === current));
+        };
+        video.addEventListener("timeupdate", showStep);
+        video.addEventListener("seeked", showStep);
+
+        steps.forEach((step) => {
+          step.addEventListener("click", () => {
+            video.currentTime = Number(step.dataset.at);
+            video.play();
+          });
+        });
       })();
     </script>
   </body>
