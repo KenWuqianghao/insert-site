@@ -22,7 +22,7 @@ cwebp -q 82 -resize 1920 0 insert-preview.png -o assets/insert-preview.webp
 cwebp -q 90 insert-settings.png -o assets/insert-settings.webp
 ```
 
-The step list next to the video uses the `data-at` times in `index.html`. If the video changes, update these times.
+The step buttons under the video use the `data-at` times in `index.html`. If the video changes, update these times.
 
 ## Deploy
 
