@@ -73,6 +73,7 @@
                   muted
                   loop
                   playsinline
+                  controls
                   preload="metadata"
                   aria-describedby="demo-steps"
                 ></video>
@@ -377,6 +378,8 @@ make run</code></pre>
         const toggle = document.getElementById("play-toggle");
         const steps = [...document.querySelectorAll("#demo-steps button")];
         if (!video || steps.length === 0) return;
+        // The native controls stay when the script does not run. The play button and the step row replace them.
+        video.controls = false;
 
         if (reduceMotion) {
           video.removeAttribute("autoplay");
@@ -396,7 +399,7 @@ make run</code></pre>
         const starts = steps.map((step) => Number(step.dataset.at));
         let current = -2;
         const showStep = () => {
-          const next = starts.findLastIndex((start) => video.currentTime >= start);
+          const next = starts.filter((start) => video.currentTime >= start).length - 1;
           if (next === current) return;
           current = next;
           steps.forEach((step, index) => {
@@ -404,10 +407,11 @@ make run</code></pre>
             else step.removeAttribute("aria-current");
           });
           const active = steps[current];
-          if (active && list.scrollWidth > list.clientWidth) {
+          // A scroll during playback must not move a focused step button out of view.
+          if (active && list.scrollWidth > list.clientWidth && !list.contains(document.activeElement)) {
             list.scrollTo({
               left: active.offsetLeft - (list.clientWidth - active.offsetWidth) / 2,
-              behavior: reduceMotion ? "auto" : "smooth",
+              behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
             });
           }
         };

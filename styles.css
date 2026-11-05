@@ -5,7 +5,7 @@
   --grey: #f5f5f7;
   --line: #d2d2d7;
   --blue: #0071e3;
-  --blue-hover: #0077ed;
+  --blue-hover: #0066cc;
   --ring: #f0585f;
   --night: #000;
   --night-2: #1d1d1f;
@@ -368,6 +368,11 @@ h1 {
   white-space: nowrap;
   cursor: pointer;
   transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
+}
+
+/* The list scrolls and clips an outer outline. */
+.chapter-list button:focus-visible {
+  outline-offset: -3px;
 }
 
 .chapter-list button:hover {
