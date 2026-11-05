@@ -14,34 +14,38 @@
     <meta property="og:description" content="A native clipboard tray for macOS. Press the shortcut, select a clip, and paste." />
     <meta property="og:image" content="https://insert-app.vercel.app/assets/insert-og.jpg" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="theme-color" content="#15132a" />
+    <meta name="color-scheme" content="light" />
+    <meta name="theme-color" content="#ffffff" />
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon.png" />
     <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
-    <link rel="preload" href="/assets/fonts/schibsted-grotesk.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="stylesheet" href="/styles.css" />
+    <script>document.documentElement.classList.add("js");</script>
   </head>
   <body>
-    <header class="topbar wrap">
-      <a class="brand" href="/">
-        <img src="/assets/insert-icon.webp" alt="" width="32" height="32" />
-        Insert
-      </a>
-      <nav aria-label="Main">
-        <a href="#shortcuts">Shortcuts</a>
-        <a href="https://github.com/KenWuqianghao/Insert">GitHub</a>
-        <a class="button small" href="#download">Download</a>
-      </nav>
+    <header class="topbar">
+      <div class="wrap topbar-row">
+        <a class="brand" href="/">
+          <img src="/assets/insert-icon.webp" alt="" width="28" height="28" />
+          Insert
+        </a>
+        <nav aria-label="Main">
+          <a class="nav-link" href="#features">Features</a>
+          <a class="nav-link" href="#shortcuts">Shortcuts</a>
+          <a class="nav-link" href="#privacy">Privacy</a>
+          <a class="nav-link" href="https://github.com/KenWuqianghao/Insert">GitHub</a>
+          <a class="button primary small" href="#download">Download</a>
+        </nav>
+      </div>
     </header>
 
     <main>
-      <section class="hero wrap">
-        <h1>
-          <span class="line">Press <kbd aria-label="Shift">⇧</kbd><kbd aria-label="Command">⌘</kbd><kbd>V</kbd>.</span>
-          <span class="line">Select a clip.</span>
-          <span class="line">Paste.</span>
-        </h1>
-        <div class="hero-side">
-          <p class="lede">Insert is a native clipboard tray for macOS. It keeps the items that you copy and pastes them into the app that you use.</p>
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="wrap hero-copy">
+          <h1 id="hero-title">Everything you copy, one keystroke away</h1>
+          <p class="sub">
+            Press <kbd aria-hidden="true">⇧</kbd><kbd aria-hidden="true">⌘</kbd><kbd aria-hidden="true">V</kbd><span class="visually-hidden">Shift Command V</span>,
+            select a clip, and Insert pastes it. A native clipboard tray for macOS, with no account and no cloud sync.
+          </p>
           <div class="actions">
             <a
               class="button primary"
@@ -49,148 +53,260 @@
               href="https://github.com/KenWuqianghao/Insert/releases/latest/download/Insert-Installer.dmg"
               data-windows-url="https://github.com/KenWuqianghao/insert-windows/releases/latest"
             >Download for macOS</a>
-            <a class="button" href="https://github.com/KenWuqianghao/Insert">View the source</a>
+            <a class="button outline" href="https://github.com/KenWuqianghao/Insert">View on GitHub</a>
           </div>
-          <p class="fineprint">Free and open source. No account. No cloud sync.</p>
+          <p class="fineprint">Free and open source · macOS 14 or later</p>
+        </div>
+
+        <div class="wrap demo">
+          <h2 class="visually-hidden">Demo</h2>
+          <div class="laptop">
+            <div class="laptop-lid">
+              <div class="laptop-screen">
+                <video
+                  id="demo-video"
+                  src="/assets/insert-demo.mp4"
+                  poster="/assets/insert-demo-poster.webp"
+                  width="1920"
+                  height="1200"
+                  autoplay
+                  muted
+                  loop
+                  playsinline
+                  controls
+                  preload="metadata"
+                  aria-describedby="demo-steps"
+                ></video>
+              </div>
+              <span class="laptop-notch" aria-hidden="true"></span>
+            </div>
+            <div class="laptop-base" aria-hidden="true"></div>
+          </div>
+
+          <div class="chapters">
+            <ol class="chapter-list" id="demo-steps" aria-label="Demo steps">
+              <li><button type="button" data-at="1.06"><span class="step-n">1</span>Open the tray<kbd aria-hidden="true">⇧⌘V</kbd><span class="visually-hidden">Shift Command V</span></button></li>
+              <li><button type="button" data-at="3.86"><span class="step-n">2</span>Preview<kbd>Space</kbd></button></li>
+              <li><button type="button" data-at="8.03"><span class="step-n">3</span>Type to search</button></li>
+              <li><button type="button" data-at="11.08"><span class="step-n">4</span>Pinboards<kbd>Tab</kbd></button></li>
+              <li><button type="button" data-at="14.42"><span class="step-n">5</span>Quick paste<kbd aria-hidden="true">⌘1</kbd><span class="visually-hidden">Command 1</span></button></li>
+            </ol>
+            <button type="button" class="play-toggle" id="play-toggle" aria-label="Pause the demo">
+              <svg class="icon-pause" viewBox="0 0 16 16" aria-hidden="true"><rect x="3.5" y="2.5" width="3" height="11" rx="1" /><rect x="9.5" y="2.5" width="3" height="11" rx="1" /></svg>
+              <svg class="icon-play" viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 2.8v10.4a.8.8 0 0 0 1.2.7l8.4-5.2a.8.8 0 0 0 0-1.4L5.7 2.1a.8.8 0 0 0-1.2.7Z" /></svg>
+            </button>
+          </div>
         </div>
       </section>
 
-      <section class="demo wrap" aria-labelledby="demo-title">
-        <h2 id="demo-title" class="visually-hidden">Demo</h2>
-        <div class="stage">
-          <video
-            id="demo-video"
-            src="/assets/insert-demo.mp4"
-            poster="/assets/insert-tray.webp"
-            width="1920"
-            height="1080"
-            autoplay
-            muted
-            loop
-            playsinline
-            controls
-            preload="metadata"
-            aria-describedby="demo-steps"
-          ></video>
-        </div>
-        <ol class="steps" id="demo-steps">
-          <li><button type="button" data-at="0.6"><span>Press <kbd>⇧</kbd><kbd>⌘</kbd><kbd>V</kbd> to open the tray.</span></button></li>
-          <li><button type="button" data-at="2.2"><span>Press the arrow keys to move. Press <kbd>Space</kbd> to see a large preview.</span></button></li>
-          <li><button type="button" data-at="7.2"><span>Press <kbd>⌫</kbd> to delete a clip.</span></button></li>
-          <li><button type="button" data-at="9.2"><span>Type to search.</span></button></li>
-          <li><button type="button" data-at="12.2"><span>Press <kbd>Tab</kbd> to go to the next pinboard.</span></button></li>
-          <li><button type="button" data-at="15.2"><span>Hold <kbd>⌘</kbd>, then press <kbd>1</kbd> to paste the first card.</span></button></li>
-        </ol>
-      </section>
-
-      <section class="band" aria-labelledby="features-title">
+      <section class="band grey" id="features" aria-labelledby="features-title">
         <div class="wrap">
-          <h2 id="features-title">A tray of cards at the bottom of the screen</h2>
-          <p class="intro">Each card shows the source app, the type, the time, and a preview of the content. The keyboard does all the work.</p>
-        </div>
-        <div class="tray" role="list">
-          <article class="clip clip-mustard" role="listitem">
-            <header><h3>Paste</h3><kbd>Enter</kbd></header>
-            <p>Insert pastes the selected clip into the active app. The tray closes and you continue your work.</p>
-          </article>
-          <article class="clip clip-blue" role="listitem">
-            <header><h3>Plain text</h3><span><kbd>⇧</kbd><kbd>Enter</kbd></span></header>
-            <p>Paste the clip without its format. The text takes the style of the document that you write.</p>
-          </article>
-          <article class="clip clip-teal" role="listitem">
-            <header><h3>Search</h3><span>Type</span></header>
-            <p>Type in the tray to search. Use the filter to show one type of clip.</p>
-          </article>
-          <article class="clip clip-green" role="listitem">
-            <header><h3>Pinboards</h3><kbd>Tab</kbd></header>
-            <p>Pinboards keep the clips that you use frequently. The history limit does not delete pinned clips.</p>
-          </article>
-          <article class="clip clip-violet" role="listitem">
-            <header><h3>Quick paste</h3><span><kbd>⌘</kbd><kbd>1</kbd> to <kbd>9</kbd></span></header>
-            <p>Hold Command to show the numbers 1 to 9 on the cards. Press a number to paste that card.</p>
-          </article>
-          <article class="clip clip-rose" role="listitem">
-            <header><h3>Multiple clips</h3><span><kbd>⇧</kbd><kbd>→</kbd></span></header>
-            <p>Hold Shift and press the arrow keys to select more than one clip. Delete them together.</p>
-          </article>
+          <div class="section-head reveal">
+            <h2 id="features-title">A card for each clip</h2>
+            <p class="sub">Each card shows the source app, the type, the time, and a preview. The keyboard does the rest.</p>
+          </div>
+
+          <div class="feature-grid">
+            <article class="feature wide reveal">
+              <div class="feature-media">
+                <img class="shot tray-only" src="/assets/insert-tray.webp" alt="The Insert tray at the bottom of the screen, with a row of clip cards" width="1920" height="1200" loading="lazy" />
+              </div>
+              <h3>Paste with Enter</h3>
+              <p>Press <kbd>Enter</kbd> to paste the clip into the active app. Press <span class="keys"><kbd>⇧</kbd><kbd>Enter</kbd></span> to paste it as plain text.</p>
+            </article>
+
+            <article class="feature reveal">
+              <div class="scene" aria-hidden="true">
+                <div class="mini-tray">
+                  <div class="tray-bar">
+                    <span class="search-field"><svg viewBox="0 0 16 16"><circle cx="7" cy="7" r="4.5" /><path d="m10.5 10.5 3 3" /></svg>launch<i class="caret"></i></span>
+                    <span class="chip on">Files</span>
+                    <span class="chip">Text</span>
+                  </div>
+                  <div class="clip-row">
+                    <div class="clip t-files"><div class="clip-head"><b>Files</b><span>2 hr ago</span></div><div class="clip-body center"><span class="doc"></span><small>Launch plan.pdf</small></div><div class="clip-foot">1 file</div></div>
+                    <div class="clip t-files"><div class="clip-head"><b>Files</b><span>Yesterday</span></div><div class="clip-body center"><span class="doc"></span><small>Launch notes.md</small></div><div class="clip-foot">1 file</div></div>
+                    <div class="clip t-files"><div class="clip-head"><b>Files</b><span>Monday</span></div><div class="clip-body center"><span class="doc"></span><small>Launch.key</small></div><div class="clip-foot">1 file</div></div>
+                  </div>
+                </div>
+              </div>
+              <h3>Type to search</h3>
+              <p>Type in the tray to search. Use the filter to show one type of clip.</p>
+            </article>
+
+            <article class="feature reveal">
+              <div class="scene" aria-hidden="true">
+                <div class="mini-tray">
+                  <div class="tray-bar">
+                    <span class="tab">Clipboard</span>
+                    <span class="tab on"><i style="--dot: #0a84ff"></i>Snippets</span>
+                    <span class="tab"><i style="--dot: #ff453a"></i>Design</span>
+                    <kbd class="tray-key">Tab</kbd>
+                  </div>
+                  <div class="clip-row">
+                    <div class="clip t-text"><div class="clip-head"><b>Text</b><span>Pinned</span></div><div class="clip-body"><p>Thanks for the note. I will reply by Friday.</p></div><div class="clip-foot">44 characters</div></div>
+                    <div class="clip t-link"><div class="clip-head"><b>Link</b><span>Pinned</span></div><div class="clip-body"><span class="link-glyph"></span><p><b>Team calendar</b></p></div><div class="clip-foot">31 characters</div></div>
+                    <div class="clip t-text"><div class="clip-head"><b>Text</b><span>Pinned</span></div><div class="clip-body"><p>Best regards,<br />The design team</p></div><div class="clip-foot">30 characters</div></div>
+                  </div>
+                </div>
+              </div>
+              <h3>Pinboards</h3>
+              <p>Pin the clips that you use frequently. The history limit does not delete pinned clips.</p>
+            </article>
+
+            <article class="feature wide reveal">
+              <div class="feature-media">
+                <img class="shot" src="/assets/insert-preview.webp" alt="The large preview of an image clip, above the row of cards" width="1920" height="1200" loading="lazy" />
+              </div>
+              <h3>Press Space to see the full clip</h3>
+              <p>The large preview opens above the cards. Move the selection and the preview follows.</p>
+            </article>
+
+            <article class="feature reveal">
+              <div class="scene" aria-hidden="true">
+                <div class="mini-tray">
+                  <div class="clip-row">
+                    <div class="clip t-text"><span class="num">1</span><div class="clip-head"><b>Text</b><span>Just now</span></div><div class="clip-body"><p>What is new in Insert</p></div><div class="clip-foot">21 characters</div></div>
+                    <div class="clip t-link"><span class="num">2</span><div class="clip-head"><b>Link</b><span>4 min ago</span></div><div class="clip-body"><span class="link-glyph"></span><p><b>Insert on GitHub</b></p></div><div class="clip-foot">39 characters</div></div>
+                    <div class="clip t-color"><span class="num">3</span><div class="clip-head"><b>Color</b><span>26 min ago</span></div><div class="clip-body swatch">#5B8DEF</div><div class="clip-foot">RGB 91, 141, 239</div></div>
+                  </div>
+                </div>
+              </div>
+              <h3>Quick paste</h3>
+              <p>Hold <kbd>⌘</kbd> to show the numbers 1 to 9 on the cards. Press <span class="keys"><kbd>⌘</kbd><kbd>1</kbd></span> to paste the first card.</p>
+            </article>
+
+            <article class="feature reveal">
+              <div class="scene" aria-hidden="true">
+                <div class="mini-tray">
+                  <div class="clip-row">
+                    <div class="clip t-image picked"><div class="clip-head"><b>Image</b><span>11 min ago</span></div><div class="clip-body art"></div><div class="clip-foot">1,600 × 1,000</div></div>
+                    <div class="clip t-text picked"><div class="clip-head"><b>Text</b><span>12 min ago</span></div><div class="clip-body"><p>Lunch at 12:30? The usual place.</p></div><div class="clip-foot">32 characters</div></div>
+                    <div class="clip t-link picked"><div class="clip-head"><b>Link</b><span>15 min ago</span></div><div class="clip-body"><span class="link-glyph"></span><p><b>Release notes</b></p></div><div class="clip-foot">48 characters</div></div>
+                  </div>
+                </div>
+              </div>
+              <h3>Select more than one clip</h3>
+              <p>Hold <kbd>⇧</kbd> and press the arrow keys to select more clips. Delete them together.</p>
+            </article>
+          </div>
+
+          <p class="feature-note reveal">Insert stores text, links, files, images, PDFs, rich text, colors, and common media types.</p>
         </div>
       </section>
 
-      <section class="band wrap split" aria-labelledby="preview-title">
-        <div class="split-copy">
-          <h2 id="preview-title">Press Space to see the full clip</h2>
-          <p>The large preview opens above the cards. Move the selection and the preview follows.</p>
-          <p>Insert stores text, links, files, images, PDFs, rich text, colors, and common media types.</p>
+      <section class="band dark" id="shortcuts" aria-labelledby="shortcuts-title">
+        <div class="wrap">
+          <div class="section-head reveal">
+            <div class="keycaps" aria-hidden="true"><span>⇧</span><span>⌘</span><span>V</span></div>
+            <h2 id="shortcuts-title">Keyboard first</h2>
+            <p class="sub">Each action has a shortcut. Your hands stay on the keys.</p>
+          </div>
+          <div class="table-wrap reveal">
+            <table>
+              <thead>
+                <tr><th scope="col">Action</th><th scope="col">Shortcut</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Open or close Insert</td><td><kbd>⇧</kbd><kbd>⌘</kbd><kbd>V</kbd><span class="cell-note">You can change this shortcut.</span></td></tr>
+                <tr><td>Move the selection</td><td>Arrow keys</td></tr>
+                <tr><td>Extend the selection</td><td><kbd>⇧</kbd> and the arrow keys</td></tr>
+                <tr><td>Select all clips</td><td><kbd>⌘</kbd><kbd>A</kbd></td></tr>
+                <tr><td>Paste the selected clip</td><td><kbd>Enter</kbd> or double-click</td></tr>
+                <tr><td>Paste as plain text</td><td><kbd>⇧</kbd><kbd>Enter</kbd></td></tr>
+                <tr><td>Copy without paste</td><td><kbd>⌘</kbd><kbd>C</kbd></td></tr>
+                <tr><td>Paste card 1 to 9</td><td><kbd>⌘</kbd><kbd>1</kbd> to <kbd>⌘</kbd><kbd>9</kbd></td></tr>
+                <tr><td>Preview</td><td><kbd>Space</kbd></td></tr>
+                <tr><td>Delete the selection</td><td><kbd>⌫</kbd> or <kbd>⌘</kbd><kbd>⌫</kbd></td></tr>
+                <tr><td>Go to the next or previous pinboard</td><td><kbd>Tab</kbd> or <kbd>⇧</kbd><kbd>Tab</kbd></td></tr>
+                <tr><td>Close the preview, clear the search, or close the tray</td><td><kbd>Esc</kbd></td></tr>
+                <tr><td>Open Settings</td><td><kbd>⌘</kbd><kbd>,</kbd></td></tr>
+              </tbody>
+            </table>
+            <p class="note">Right-click a card to pin, rename, preview, or delete the clip.</p>
+          </div>
         </div>
-        <img class="shot" src="/assets/insert-preview.webp" alt="The large preview of an image clip, above the row of cards" width="1920" height="1080" loading="lazy" />
       </section>
 
-      <section class="band wrap split reverse" aria-labelledby="privacy-title">
-        <div class="split-copy">
-          <h2 id="privacy-title">All data stays on your Mac</h2>
-          <ul class="plain">
-            <li>Insert has no account and no cloud sync.</li>
+      <section class="band privacy" id="privacy" aria-labelledby="privacy-title">
+        <div class="wrap">
+          <div class="section-head reveal">
+            <svg class="shield" viewBox="0 0 64 72" aria-hidden="true">
+              <defs>
+                <linearGradient id="shield-fill" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0" stop-color="#4cd964" />
+                  <stop offset="1" stop-color="#28a745" />
+                </linearGradient>
+              </defs>
+              <path d="M32 2 6 11.5v19.2c0 17.4 11.1 32.7 26 38.3 14.9-5.6 26-20.9 26-38.3V11.5L32 2Z" fill="url(#shield-fill)" />
+              <rect x="21" y="32" width="22" height="17" rx="3.5" fill="#fff" />
+              <path d="M25.5 32v-5a6.5 6.5 0 0 1 13 0v5" fill="none" stroke="#fff" stroke-width="4" />
+              <circle cx="32" cy="40.5" r="2.6" fill="#28a745" />
+            </svg>
+            <h2 id="privacy-title">All data stays on your Mac</h2>
+            <p class="sub">Insert has no account and no cloud sync. Your clips do not leave your Mac.</p>
+          </div>
+          <ul class="facts reveal">
             <li>Insert skips items that an app marks as concealed or transient, for example passwords from a password manager.</li>
             <li>You can pause capture at any time.</li>
             <li>You can ignore the apps that you select.</li>
             <li>One command clears the history.</li>
           </ul>
         </div>
-        <img class="window" src="/assets/insert-settings.webp" alt="The General tab of the Settings window" width="1000" height="752" loading="lazy" />
+        <div class="wall" id="clip-wall" aria-hidden="true"></div>
       </section>
 
-      <section class="band wrap" id="shortcuts" aria-labelledby="shortcuts-title">
-        <h2 id="shortcuts-title">Shortcuts</h2>
-        <table>
-          <thead>
-            <tr><th scope="col">Action</th><th scope="col">Shortcut</th></tr>
-          </thead>
-          <tbody>
-            <tr><td>Open or close Insert</td><td><kbd>⇧</kbd><kbd>⌘</kbd><kbd>V</kbd> You can change this shortcut.</td></tr>
-            <tr><td>Move the selection</td><td>Arrow keys</td></tr>
-            <tr><td>Extend the selection</td><td><kbd>⇧</kbd> and the arrow keys</td></tr>
-            <tr><td>Select all clips</td><td><kbd>⌘</kbd><kbd>A</kbd></td></tr>
-            <tr><td>Paste the selected clip</td><td><kbd>Enter</kbd> or double-click</td></tr>
-            <tr><td>Paste as plain text</td><td><kbd>⇧</kbd><kbd>Enter</kbd></td></tr>
-            <tr><td>Copy without paste</td><td><kbd>⌘</kbd><kbd>C</kbd></td></tr>
-            <tr><td>Paste card 1 to 9</td><td><kbd>⌘</kbd><kbd>1</kbd> to <kbd>⌘</kbd><kbd>9</kbd></td></tr>
-            <tr><td>Preview</td><td><kbd>Space</kbd></td></tr>
-            <tr><td>Delete the selection</td><td><kbd>⌫</kbd> or <kbd>⌘</kbd><kbd>⌫</kbd></td></tr>
-            <tr><td>Go to the next or previous pinboard</td><td><kbd>Tab</kbd> or <kbd>⇧</kbd><kbd>Tab</kbd></td></tr>
-            <tr><td>Close the preview, clear the search, or close the tray</td><td><kbd>Esc</kbd></td></tr>
-            <tr><td>Open Settings</td><td><kbd>⌘</kbd><kbd>,</kbd></td></tr>
-          </tbody>
-        </table>
-        <p class="note">Right-click a card to pin, rename, preview, or delete the clip.</p>
-      </section>
-
-      <section class="band download" id="download" aria-labelledby="download-title">
-        <div class="wrap download-grid">
-          <div>
+      <section class="band grey" id="download" aria-labelledby="download-title">
+        <div class="wrap">
+          <div class="section-head reveal">
+            <img class="app-icon" src="/assets/insert-icon.webp" alt="" width="88" height="88" loading="lazy" />
             <h2 id="download-title">Download Insert</h2>
-            <p>Insert needs macOS 14 or later. Open the disk image and drag Insert into Applications.</p>
+            <p class="sub">Insert needs macOS 14 or later. Open the disk image and drag Insert into Applications.</p>
             <div class="actions">
               <a class="button primary" href="https://github.com/KenWuqianghao/Insert/releases/latest/download/Insert-Installer.dmg">Download for macOS</a>
-              <a class="button" href="https://github.com/KenWuqianghao/insert-windows/releases/latest">Get the Windows port</a>
+              <a class="button outline" href="https://github.com/KenWuqianghao/insert-windows/releases/latest">Get the Windows port</a>
             </div>
           </div>
-          <div class="notes">
-            <h3>Before the first paste</h3>
-            <p>Insert pastes with a simulated <kbd>⌘</kbd><kbd>V</kbd>. Turn on Insert in System Settings &gt; Privacy &amp; Security &gt; Accessibility. Without this permission, Insert copies the clip and you paste it.</p>
-            <h3>Build from source</h3>
-            <pre><code>git clone https://github.com/KenWuqianghao/Insert
+          <div class="notes reveal">
+            <article class="note-card">
+              <h3>Before the first paste</h3>
+              <p>Insert pastes with a simulated <span class="keys"><kbd>⌘</kbd><kbd>V</kbd></span>. Turn on Insert in System Settings &gt; Privacy &amp; Security &gt; Accessibility. Without this permission, Insert copies the clip and you paste it.</p>
+            </article>
+            <article class="note-card">
+              <h3>Build from source</h3>
+              <pre><code>git clone https://github.com/KenWuqianghao/Insert
 cd Insert
 make run</code></pre>
+            </article>
           </div>
         </div>
       </section>
     </main>
 
     <footer class="footer">
-      <div class="wrap">
-        <span>Insert is open source.</span>
-        <a href="https://github.com/KenWuqianghao/Insert">GitHub</a>
-        <a href="https://github.com/KenWuqianghao/Insert/releases">Releases</a>
+      <div class="wrap footer-grid">
+        <div class="footer-brand">
+          <a class="brand" href="/">
+            <img src="/assets/insert-icon.webp" alt="" width="28" height="28" loading="lazy" />
+            Insert
+          </a>
+          <p>A native clipboard tray for macOS. Free and open source.</p>
+        </div>
+        <nav aria-labelledby="footer-product">
+          <h2 id="footer-product">Product</h2>
+          <ul>
+            <li><a href="https://github.com/KenWuqianghao/Insert/releases/latest/download/Insert-Installer.dmg">Download</a></li>
+            <li><a href="https://github.com/KenWuqianghao/Insert/releases">Releases</a></li>
+            <li><a href="https://github.com/KenWuqianghao/insert-windows/releases/latest">Windows port</a></li>
+          </ul>
+        </nav>
+        <nav aria-labelledby="footer-source">
+          <h2 id="footer-source">Source</h2>
+          <ul>
+            <li><a href="https://github.com/KenWuqianghao/Insert">GitHub</a></li>
+            <li><a href="https://github.com/KenWuqianghao/Insert/issues">Issues</a></li>
+          </ul>
+        </nav>
       </div>
     </footer>
 
@@ -203,19 +319,101 @@ make run</code></pre>
           download.textContent = "Download for Windows";
         }
 
+        const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+        const reveals = document.querySelectorAll(".reveal");
+        if (reduceMotion || !("IntersectionObserver" in window)) {
+          reveals.forEach((el) => el.classList.add("in"));
+        } else {
+          const observer = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add("in");
+                observer.unobserve(entry.target);
+              });
+            },
+            { rootMargin: "0px 0px -8% 0px" }
+          );
+          reveals.forEach((el) => observer.observe(el));
+        }
+
+        const WALL = [
+          { type: "text", head: "Text", time: "Just now", body: "What is new in Insert", foot: "21 characters" },
+          { type: "image", head: "Image", time: "11 min ago", art: true, foot: "1,600 × 1,000" },
+          { type: "concealed", head: "Text", time: "2 min ago", foot: "Not saved" },
+          { type: "link", head: "Link", time: "4 min ago", body: "Insert on GitHub", link: true, foot: "39 characters" },
+          { type: "color", head: "Color", time: "26 min ago", swatch: "#5B8DEF", foot: "RGB 91, 141, 239" },
+          { type: "files", head: "Files", time: "2 hr ago", file: "Launch plan.pdf", foot: "1 file" },
+          { type: "text", head: "Text", time: "48 min ago", body: "Lunch at 12:30? The usual place.", foot: "32 characters" },
+          { type: "concealed", head: "Text", time: "1 hr ago", foot: "Not saved" },
+          { type: "color", head: "Color", time: "3 hr ago", swatch: "#FF9F0A", foot: "RGB 255, 159, 10" },
+          { type: "link", head: "Link", time: "Yesterday", body: "Release notes", link: true, foot: "48 characters" },
+          { type: "image", head: "Image", time: "Yesterday", art: true, foot: "2,400 × 1,500" },
+          { type: "files", head: "Files", time: "Monday", file: "Screenshots.zip", foot: "1 file" },
+        ];
+
+        const cardHtml = (clip) => {
+          let body;
+          if (clip.type === "concealed") body = `<div class="clip-body concealed"><span class="lock"></span></div>`;
+          else if (clip.art) body = `<div class="clip-body art"></div>`;
+          else if (clip.swatch) body = `<div class="clip-body swatch" style="--swatch: ${clip.swatch}">${clip.swatch}</div>`;
+          else if (clip.file) body = `<div class="clip-body center"><span class="doc"></span><small>${clip.file}</small></div>`;
+          else if (clip.link) body = `<div class="clip-body"><span class="link-glyph"></span><p><b>${clip.body}</b></p></div>`;
+          else body = `<div class="clip-body"><p>${clip.body}</p></div>`;
+          return `<div class="clip t-${clip.type}"><div class="clip-head"><b>${clip.head}</b><span>${clip.time}</span></div>${body}<div class="clip-foot">${clip.foot}</div></div>`;
+        };
+
+        const wall = document.getElementById("clip-wall");
+        if (wall) {
+          wall.innerHTML = [0, 5, 9]
+            .map((offset) => {
+              const row = WALL.map((_, i) => WALL[(i + offset) % WALL.length]);
+              return `<div class="wall-row">${row.map(cardHtml).join("")}</div>`;
+            })
+            .join("");
+        }
+
         const video = document.getElementById("demo-video");
+        const toggle = document.getElementById("play-toggle");
         const steps = [...document.querySelectorAll("#demo-steps button")];
         if (!video || steps.length === 0) return;
+        // The native controls stay when the script does not run. The play button and the step row replace them.
+        video.controls = false;
 
-        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        if (reduceMotion) {
           video.removeAttribute("autoplay");
           video.pause();
         }
 
+        const showPlayState = () => {
+          toggle.classList.toggle("paused", video.paused);
+          toggle.setAttribute("aria-label", video.paused ? "Play the demo" : "Pause the demo");
+        };
+        video.addEventListener("play", showPlayState);
+        video.addEventListener("pause", showPlayState);
+        toggle.addEventListener("click", () => (video.paused ? video.play() : video.pause()));
+        showPlayState();
+
+        const list = document.getElementById("demo-steps");
         const starts = steps.map((step) => Number(step.dataset.at));
+        let current = -2;
         const showStep = () => {
-          const current = starts.findLastIndex((start) => video.currentTime >= start);
-          steps.forEach((step, index) => step.toggleAttribute("aria-current", index === current));
+          const next = starts.filter((start) => video.currentTime >= start).length - 1;
+          if (next === current) return;
+          current = next;
+          steps.forEach((step, index) => {
+            if (index === current) step.setAttribute("aria-current", "step");
+            else step.removeAttribute("aria-current");
+          });
+          const active = steps[current];
+          // A scroll during playback must not move a focused step button out of view.
+          if (active && list.scrollWidth > list.clientWidth && !list.contains(document.activeElement)) {
+            list.scrollTo({
+              left: active.offsetLeft - (list.clientWidth - active.offsetWidth) / 2,
+              behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
+            });
+          }
         };
         video.addEventListener("timeupdate", showStep);
         video.addEventListener("seeked", showStep);
