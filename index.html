@@ -66,7 +66,7 @@
                 <video
                   id="demo-video"
                   src="/assets/insert-demo.mp4"
-                  poster="/assets/insert-tray.webp"
+                  poster="/assets/insert-demo-poster.webp"
                   width="1920"
                   height="1200"
                   autoplay
@@ -84,11 +84,11 @@
 
           <div class="chapters">
             <ol class="chapter-list" id="demo-steps" aria-label="Demo steps">
-              <li><button type="button" data-at="0.8"><span class="step-n">1</span>Open the tray<kbd aria-hidden="true">⇧⌘V</kbd><span class="visually-hidden">Shift Command V</span></button></li>
-              <li><button type="button" data-at="2.6"><span class="step-n">2</span>Preview<kbd>Space</kbd></button></li>
-              <li><button type="button" data-at="7.0"><span class="step-n">3</span>Type to search</button></li>
-              <li><button type="button" data-at="10.0"><span class="step-n">4</span>Pinboards<kbd>Tab</kbd></button></li>
-              <li><button type="button" data-at="13.5"><span class="step-n">5</span>Quick paste<kbd aria-hidden="true">⌘1</kbd><span class="visually-hidden">Command 1</span></button></li>
+              <li><button type="button" data-at="0.95"><span class="step-n">1</span>Open the tray<kbd aria-hidden="true">⇧⌘V</kbd><span class="visually-hidden">Shift Command V</span></button></li>
+              <li><button type="button" data-at="3.75"><span class="step-n">2</span>Preview<kbd>Space</kbd></button></li>
+              <li><button type="button" data-at="8.01"><span class="step-n">3</span>Type to search</button></li>
+              <li><button type="button" data-at="11.23"><span class="step-n">4</span>Pinboards<kbd>Tab</kbd></button></li>
+              <li><button type="button" data-at="14.6"><span class="step-n">5</span>Quick paste<kbd aria-hidden="true">⌘1</kbd><span class="visually-hidden">Command 1</span></button></li>
             </ol>
             <button type="button" class="play-toggle" id="play-toggle" aria-label="Pause the demo">
               <svg class="icon-pause" viewBox="0 0 16 16" aria-hidden="true"><rect x="3.5" y="2.5" width="3" height="11" rx="1" /><rect x="9.5" y="2.5" width="3" height="11" rx="1" /></svg>
@@ -108,7 +108,7 @@
           <div class="feature-grid">
             <article class="feature wide reveal">
               <div class="feature-media">
-                <img class="shot" src="/assets/insert-tray.webp" alt="The Insert tray at the bottom of the screen, with a row of clip cards" width="1920" height="1080" loading="lazy" />
+                <img class="shot tray-only" src="/assets/insert-tray.webp" alt="The Insert tray at the bottom of the screen, with a row of clip cards" width="1920" height="1200" loading="lazy" />
               </div>
               <h3>Paste with Enter</h3>
               <p>Press <kbd>Enter</kbd> to paste the clip into the active app. Press <span class="keys"><kbd>⇧</kbd><kbd>Enter</kbd></span> to paste it as plain text.</p>
@@ -145,7 +145,7 @@
                   <div class="clip-row">
                     <div class="clip t-text"><div class="clip-head"><b>Text</b><span>Pinned</span></div><div class="clip-body"><p>Thanks for the note. I will reply by Friday.</p></div><div class="clip-foot">44 characters</div></div>
                     <div class="clip t-link"><div class="clip-head"><b>Link</b><span>Pinned</span></div><div class="clip-body"><span class="link-glyph"></span><p><b>Team calendar</b></p></div><div class="clip-foot">31 characters</div></div>
-                    <div class="clip t-text"><div class="clip-head"><b>Text</b><span>Pinned</span></div><div class="clip-body"><p>Ken Wu<br />Toronto, ON</p></div><div class="clip-foot">18 characters</div></div>
+                    <div class="clip t-text"><div class="clip-head"><b>Text</b><span>Pinned</span></div><div class="clip-body"><p>Best regards,<br />The design team</p></div><div class="clip-foot">30 characters</div></div>
                   </div>
                 </div>
               </div>
@@ -155,7 +155,7 @@
 
             <article class="feature wide reveal">
               <div class="feature-media">
-                <img class="shot" src="/assets/insert-preview.webp" alt="The large preview of an image clip, above the row of cards" width="1920" height="1080" loading="lazy" />
+                <img class="shot" src="/assets/insert-preview.webp" alt="The large preview of an image clip, above the row of cards" width="1920" height="1200" loading="lazy" />
               </div>
               <h3>Press Space to see the full clip</h3>
               <p>The large preview opens above the cards. Move the selection and the preview follows.</p>
@@ -165,7 +165,7 @@
               <div class="scene" aria-hidden="true">
                 <div class="mini-tray">
                   <div class="clip-row">
-                    <div class="clip t-text"><span class="num">1</span><div class="clip-head"><b>Text</b><span>Just now</span></div><div class="clip-body"><p>Insert 0.3 is ready.</p></div><div class="clip-foot">20 characters</div></div>
+                    <div class="clip t-text"><span class="num">1</span><div class="clip-head"><b>Text</b><span>Just now</span></div><div class="clip-body"><p>What is new in Insert</p></div><div class="clip-foot">21 characters</div></div>
                     <div class="clip t-link"><span class="num">2</span><div class="clip-head"><b>Link</b><span>4 min ago</span></div><div class="clip-body"><span class="link-glyph"></span><p><b>Insert on GitHub</b></p></div><div class="clip-foot">39 characters</div></div>
                     <div class="clip t-color"><span class="num">3</span><div class="clip-head"><b>Color</b><span>26 min ago</span></div><div class="clip-body swatch">#5B8DEF</div><div class="clip-foot">RGB 91, 141, 239</div></div>
                   </div>
@@ -338,7 +338,7 @@ make run</code></pre>
         }
 
         const WALL = [
-          { type: "text", head: "Text", time: "Just now", body: "Insert 0.3 is ready.", foot: "20 characters" },
+          { type: "text", head: "Text", time: "Just now", body: "What is new in Insert", foot: "21 characters" },
           { type: "image", head: "Image", time: "11 min ago", art: true, foot: "1,600 × 1,000" },
           { type: "concealed", head: "Text", time: "2 min ago", foot: "Not saved" },
           { type: "link", head: "Link", time: "4 min ago", body: "Insert on GitHub", link: true, foot: "39 characters" },
@@ -399,7 +399,10 @@ make run</code></pre>
           const next = starts.findLastIndex((start) => video.currentTime >= start);
           if (next === current) return;
           current = next;
-          steps.forEach((step, index) => step.toggleAttribute("aria-current", index === current));
+          steps.forEach((step, index) => {
+            if (index === current) step.setAttribute("aria-current", "step");
+            else step.removeAttribute("aria-current");
+          });
           const active = steps[current];
           if (active && list.scrollWidth > list.clientWidth) {
             list.scrollTo({

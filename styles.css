@@ -499,6 +499,13 @@ h2 {
   height: auto;
 }
 
+/* The tray screenshot is the full screen. This card shows only the tray at the bottom. */
+.shot.tray-only {
+  aspect-ratio: 1512 / 380;
+  object-fit: cover;
+  object-position: bottom;
+}
+
 .feature-note {
   margin-top: 36px;
   color: var(--muted);
