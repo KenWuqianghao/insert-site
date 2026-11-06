@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light" />
+    <meta name="theme-color" content="#ffffff" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon.png" />
+    <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
+    <link rel="stylesheet" href="/styles.css" />
+    <meta name="robots" content="noindex" />
+    <title>Thank you - Insert</title>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="wrap topbar-row">
+        <a class="brand" href="/">
+          <img src="/assets/insert-icon.webp" alt="" width="28" height="28" />
+          Insert
+        </a>
+      </div>
+    </header>
+
+    <main class="band grey thanks" id="thanks" data-state="loading" aria-live="polite">
+      <div class="wrap">
+        <div class="section-head">
+          <img class="app-icon" src="/assets/insert-icon.webp" alt="" width="88" height="88" />
+          <h1 data-show="loading">Getting your license key</h1>
+          <h1 data-show="ready">Thank you for buying Insert</h1>
+          <h1 data-show="error">We could not find your purchase</h1>
+          <p class="sub" data-show="error">Email <a href="mailto:wooqianghao@gmail.com">wooqianghao@gmail.com</a> with your receipt to get your license key.</p>
+          <div class="actions" data-show="ready">
+            <a class="button primary" id="activate" href="insert://activate">Activate Insert</a>
+            <a class="button outline" href="https://github.com/KenWuqianghao/insert-releases/releases/latest/download/Insert-Installer.dmg">Download Insert</a>
+          </div>
+        </div>
+
+        <div class="key-card" data-show="ready">
+          <pre><code id="key"></code></pre>
+          <div class="actions">
+            <button class="button outline small" id="copy" type="button">Copy</button>
+          </div>
+          <p>Save this key. Link by Stripe sends your receipt to <b id="email"></b>.</p>
+        </div>
+
+        <p class="support" data-show="ready">For help, email <a href="mailto:wooqianghao@gmail.com">wooqianghao@gmail.com</a>.</p>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="wrap footer-grid">
+        <div class="footer-brand">
+          <a class="brand" href="/">
+            <img src="/assets/insert-icon.webp" alt="" width="28" height="28" loading="lazy" />
+            Insert
+          </a>
+          <p>A native clipboard tray for macOS.</p>
+        </div>
+        <nav aria-labelledby="footer-product">
+          <h2 id="footer-product">Product</h2>
+          <ul>
+            <li><a href="https://github.com/KenWuqianghao/insert-releases/releases/latest/download/Insert-Installer.dmg">Download</a></li>
+            <li><a href="/buy">Buy</a></li>
+            <li><a href="https://github.com/KenWuqianghao/insert-releases/releases">Releases</a></li>
+            <li><a href="https://github.com/KenWuqianghao/insert-windows/releases/latest">Windows port</a></li>
+          </ul>
+        </nav>
+        <nav aria-labelledby="footer-help">
+          <h2 id="footer-help">Help</h2>
+          <ul>
+            <li><a href="mailto:wooqianghao@gmail.com">wooqianghao@gmail.com</a></li>
+            <li><a href="/terms">Terms and refunds</a></li>
+            <li><a href="/privacy">Privacy</a></li>
+          </ul>
+        </nav>
+      </div>
+    </footer>
+
+    <script>
+      (async () => {
+        const root = document.getElementById("thanks");
+        const keyText = document.getElementById("key");
+        const copy = document.getElementById("copy");
+
+        copy.addEventListener("click", async () => {
+          try {
+            await navigator.clipboard.writeText(keyText.textContent);
+            copy.textContent = "Copied";
+            setTimeout(() => (copy.textContent = "Copy"), 2000);
+          } catch {
+            getSelection().selectAllChildren(keyText);
+          }
+        });
+
+        const sessionId = new URLSearchParams(location.search).get("session_id");
+        try {
+          if (!sessionId) throw new Error("missing session_id");
+          const res = await fetch(`/api/license?session_id=${encodeURIComponent(sessionId)}`);
+          if (!res.ok) throw new Error(`license API returned ${res.status}`);
+          const { key, email } = await res.json();
+          keyText.textContent = key;
+          document.getElementById("email").textContent = email;
+          document.getElementById("activate").href = `insert://activate?key=${encodeURIComponent(key)}`;
+          root.dataset.state = "ready";
+        } catch {
+          root.dataset.state = "error";
+        }
+      })();
+    </script>
+  </body>
+</html>

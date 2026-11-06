@@ -1035,6 +1035,54 @@ code {
   line-height: 1.7;
 }
 
+/* Thanks page */
+
+.thanks {
+  min-height: calc(100vh - 56px);
+}
+
+.thanks:not([data-state="loading"]) [data-show="loading"],
+.thanks:not([data-state="ready"]) [data-show="ready"],
+.thanks:not([data-state="error"]) [data-show="error"] {
+  display: none;
+}
+
+.thanks h1 {
+  font-size: clamp(34px, 4.8vw, 56px);
+}
+
+.key-card {
+  max-width: 640px;
+  margin: 40px auto 0;
+  padding: 28px;
+  border-radius: 22px;
+  background: #fff;
+}
+
+.key-card pre {
+  margin: 0;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.key-card .actions {
+  justify-content: flex-start;
+  margin-top: 16px;
+}
+
+.key-card p {
+  margin-top: 16px;
+  color: var(--muted);
+  font-size: 15px;
+}
+
+.support {
+  margin-top: 32px;
+  color: var(--muted);
+  font-size: 15px;
+  text-align: center;
+}
+
 /* Footer */
 
 .footer {
