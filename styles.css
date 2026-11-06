@@ -1083,6 +1083,43 @@ code {
   text-align: center;
 }
 
+/* Terms and privacy */
+
+.legal {
+  max-width: 720px;
+  padding-block: clamp(48px, 7vw, 88px);
+}
+
+.legal h1 {
+  max-width: none;
+  margin: 0;
+  font-size: clamp(34px, 4.8vw, 48px);
+}
+
+.legal h2 {
+  margin-top: 40px;
+  font-size: 24px;
+  letter-spacing: -0.01em;
+}
+
+.legal p,
+.legal ul {
+  margin-top: 12px;
+  color: #424245;
+}
+
+.legal ul {
+  padding-left: 1.2em;
+}
+
+.legal li + li {
+  margin-top: 6px;
+}
+
+.legal .fineprint {
+  margin-top: 12px;
+}
+
 /* Footer */
 
 .footer {
