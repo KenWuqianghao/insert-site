@@ -175,8 +175,11 @@ kbd {
   border: 1.5px solid transparent;
   border-radius: 999px;
   font-size: 17px;
+  background: transparent;
+  font-family: var(--font);
   font-weight: 600;
   text-decoration: none;
+  cursor: pointer;
   transition: background-color 0.15s, color 0.15s, border-color 0.15s;
 }
 
@@ -988,7 +991,7 @@ td:last-child {
   filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.16));
 }
 
-#download .actions {
+.section-head .actions {
   margin-top: 30px;
 }
 
@@ -1127,7 +1130,7 @@ code {
     display: none;
   }
 
-  .nav-link[href*="github"] {
+  .nav-link[href="/buy"] {
     display: inline;
   }
 
