@@ -1,4 +1,13 @@
 {
   "cleanUrls": true,
-  "trailingSlash": false
+  "trailingSlash": false,
+  "redirects": [
+    { "source": "/buy", "destination": "https://buy.stripe.com/REPLACE_WITH_PAYMENT_LINK", "permanent": false }
+  ],
+  "headers": [
+    {
+      "source": "/appcast.xml",
+      "headers": [{ "key": "Content-Type", "value": "application/rss+xml; charset=utf-8" }]
+    }
+  ]
 }
