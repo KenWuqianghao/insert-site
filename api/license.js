@@ -36,16 +36,22 @@ export default {
       return json(500, { error: "not_configured" });
     }
 
-    const stripe = await fetch(`https://api.stripe.com/v1/checkout/sessions/${sessionId}`, {
-      headers: { Authorization: `Bearer ${STRIPE_SECRET_KEY}` },
-    });
-    if (stripe.status === 404) return json(404, { error: "not_found" });
-    if (!stripe.ok) {
-      console.error(`license: Stripe returned ${stripe.status}`);
+    let session;
+    try {
+      const stripe = await fetch(`https://api.stripe.com/v1/checkout/sessions/${sessionId}`, {
+        headers: { Authorization: `Bearer ${STRIPE_SECRET_KEY}` },
+        signal: AbortSignal.timeout(8000),
+      });
+      if (stripe.status === 404) return json(404, { error: "not_found" });
+      if (!stripe.ok) {
+        console.error(`license: Stripe returned ${stripe.status}`);
+        return json(502, { error: "stripe_unavailable" });
+      }
+      session = await stripe.json();
+    } catch (error) {
+      console.error(`license: Stripe request failed: ${error.name}`);
       return json(502, { error: "stripe_unavailable" });
     }
-
-    const session = await stripe.json();
     const email = session.customer_details?.email;
     if (
       session.id !== sessionId ||
