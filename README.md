@@ -1,6 +1,6 @@
 # Insert
 
-The static landing page for [Insert](https://github.com/KenWuqianghao/Insert), a native clipboard tray for macOS.
+The website for Insert, a native clipboard tray for macOS. The site is static, with one Vercel function that makes license keys.
 
 Production: https://insert-app.vercel.app
 
@@ -11,6 +11,56 @@ npx serve -l 4173 .
 ```
 
 Open `http://localhost:4173`. Use a server that supports byte ranges. Without byte ranges, the browser cannot seek in the demo video.
+
+## Purchases
+
+1. The app and the site send buyers to `/buy`. `vercel.json` redirects `/buy` to the Stripe Payment Link. To change the link, edit the `destination` of the `/buy` redirect.
+2. After payment, the Payment Link sends the buyer to `/thanks?session_id={CHECKOUT_SESSION_ID}`.
+3. `thanks.html` calls `GET /api/license?session_id=cs_...`. The function reads the Checkout Session from Stripe and returns `{ "key", "email" }`.
+4. The thanks page shows the key, a Copy button, and an "Activate Insert" button that opens `insert://activate?key=<key>`.
+
+The function gives a key only when the session has `payment_status` `paid` and comes from the Payment Link in `STRIPE_PAYMENT_LINK_ID`. The same session always gives the same key. The function stores nothing.
+
+| Status | Meaning |
+|---|---|
+| 200 | `{ "key": "INSERT1-...", "email": "..." }` |
+| 400 | The `session_id` is missing or is not a Checkout Session id. |
+| 404 | The session does not exist, is not paid, or comes from a different Payment Link. |
+| 500 | An environment variable is missing or `LICENSE_SIGNING_KEY` is not a valid key. |
+| 502 | Stripe returned an error other than 404. |
+
+### Environment variables
+
+Set these in the Vercel project for Production and Preview:
+
+| Name | Value |
+|---|---|
+| `STRIPE_SECRET_KEY` | A Stripe restricted key with Read access to Checkout Sessions. |
+| `STRIPE_PAYMENT_LINK_ID` | The id of the Payment Link, for example `plink_...`. |
+| `LICENSE_SIGNING_KEY` | The Ed25519 private key as standard base64 of the PKCS8 DER. A copy is in the login Keychain: `security find-generic-password -s "Insert license signing key" -a insert -w`. |
+
+You must not commit the signing key or print it in a log.
+
+### Test the function locally
+
+The function needs no packages. Call it from Node with a stub for `fetch`:
+
+```sh
+STRIPE_SECRET_KEY=rk_test_x STRIPE_PAYMENT_LINK_ID=plink_x \
+LICENSE_SIGNING_KEY="$(security find-generic-password -s "Insert license signing key" -a insert -w)" \
+node --input-type=module -e '
+globalThis.fetch = async () => Response.json({ id: "cs_test_abc", payment_status: "paid", payment_link: "plink_x", created: 1793923200, customer_details: { email: "a@example.com" } });
+const { default: api } = await import("./api/license.js");
+const res = await api.fetch(new Request("http://localhost/api/license?session_id=cs_test_abc"));
+console.log(res.status, await res.json());
+'
+```
+
+To test with Stripe test mode, run `vercel dev` with the test-mode values of the three variables. Then buy through a test-mode Payment Link and open the thanks page that Stripe redirects to.
+
+## Updates
+
+`appcast.xml` is the Sparkle feed of the app: `https://insert-app.vercel.app/appcast.xml`. The release script in the Insert repository adds an item for each release. `vercel.json` serves the file as `application/rss+xml`.
 
 ## Assets
 
