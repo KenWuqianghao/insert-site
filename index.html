@@ -61,10 +61,11 @@
               id="platform-download"
               href="https://github.com/KenWuqianghao/Insert/releases/latest/download/Insert-Installer.dmg"
               data-windows-url="https://github.com/KenWuqianghao/insert-windows/releases/latest"
+              data-linux-url="https://github.com/KenWuqianghao/insert-linux/releases/latest"
             >Download for macOS</a>
             <a class="button outline" href="https://github.com/KenWuqianghao/Insert">View on GitHub</a>
           </div>
-          <p class="fineprint">Free and open source · macOS 14 or later</p>
+          <p class="fineprint">Free and open source · macOS 14 or later · Ports for Windows and Linux</p>
         </div>
 
         <div class="wrap demo">
@@ -275,12 +276,17 @@
             <div class="actions">
               <a class="button primary" href="https://github.com/KenWuqianghao/Insert/releases/latest/download/Insert-Installer.dmg">Download for macOS</a>
               <a class="button outline" href="https://github.com/KenWuqianghao/insert-windows/releases/latest">Get the Windows port</a>
+              <a class="button outline" href="https://github.com/KenWuqianghao/insert-linux/releases/latest">Get the Linux port</a>
             </div>
           </div>
           <div class="notes reveal">
             <article class="note-card">
               <h3>Before the first paste</h3>
               <p>Insert pastes with a simulated <span class="keys"><kbd>⌘</kbd><kbd>V</kbd></span>. Turn on Insert in System Settings &gt; Privacy &amp; Security &gt; Accessibility. Without this permission, Insert copies the clip and you paste it.</p>
+            </article>
+            <article class="note-card">
+              <h3>On Linux</h3>
+              <p>The Linux port is tested on KDE Plasma 6 with Wayland. Extract the archive and run <code>./install.sh</code>. Then start Insert and approve the two Plasma dialogs: the shortcut, and "Control input devices" for the paste.</p>
             </article>
             <article class="note-card">
               <h3>Build from source</h3>
@@ -308,6 +314,7 @@ make run</code></pre>
             <li><a href="https://github.com/KenWuqianghao/Insert/releases/latest/download/Insert-Installer.dmg">Download</a></li>
             <li><a href="https://github.com/KenWuqianghao/Insert/releases">Releases</a></li>
             <li><a href="https://github.com/KenWuqianghao/insert-windows/releases/latest">Windows port</a></li>
+            <li><a href="https://github.com/KenWuqianghao/insert-linux/releases/latest">Linux port</a></li>
           </ul>
         </nav>
         <nav aria-labelledby="footer-source">
@@ -328,6 +335,9 @@ make run</code></pre>
         if (download && platform.includes("win")) {
           download.href = download.dataset.windowsUrl;
           download.textContent = "Download for Windows";
+        } else if (download && platform.includes("linux") && !/android/i.test(navigator.userAgent)) {
+          download.href = download.dataset.linuxUrl;
+          download.textContent = "Download for Linux";
         }
 
         const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
