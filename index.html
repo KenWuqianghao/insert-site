@@ -95,15 +95,23 @@
 
           <div class="chapters">
             <ol class="chapter-list" id="demo-steps" aria-label="Demo steps">
-              <li><button type="button" data-at="1.06"><span class="step-n">1</span>Open the tray<kbd aria-hidden="true">⇧⌘V</kbd><span class="visually-hidden">Shift Command V</span></button></li>
-              <li><button type="button" data-at="3.86"><span class="step-n">2</span>Preview<kbd>Space</kbd></button></li>
-              <li><button type="button" data-at="8.03"><span class="step-n">3</span>Type to search</button></li>
-              <li><button type="button" data-at="11.08"><span class="step-n">4</span>Pinboards<kbd>Tab</kbd></button></li>
-              <li><button type="button" data-at="14.42"><span class="step-n">5</span>Quick paste<kbd aria-hidden="true">⌘1</kbd><span class="visually-hidden">Command 1</span></button></li>
+              <li><button type="button" data-at="1"><span class="step-n">1</span>Open the tray<kbd aria-hidden="true">⇧⌘V</kbd><span class="visually-hidden">Shift Command V</span></button></li>
+              <li><button type="button" data-at="3.74"><span class="step-n">2</span>Preview<kbd>Space</kbd></button></li>
+              <li><button type="button" data-at="8.01"><span class="step-n">3</span>Type to search</button></li>
+              <li><button type="button" data-at="11.16"><span class="step-n">4</span>Pinboards<kbd>Tab</kbd></button></li>
+              <li><button type="button" data-at="14.53"><span class="step-n">5</span>Quick paste<kbd aria-hidden="true">⌘1</kbd><span class="visually-hidden">Command 1</span></button></li>
+              <li><button type="button" data-at="18.81"><span class="step-n">6</span>Clip ring<kbd aria-hidden="true">⌥</kbd><span class="visually-hidden">Hold Option</span></button></li>
             </ol>
-            <button type="button" class="play-toggle" id="play-toggle" aria-label="Pause the demo">
+            <button type="button" class="round-toggle play-toggle" id="play-toggle" aria-label="Pause the demo">
               <svg class="icon-pause" viewBox="0 0 16 16" aria-hidden="true"><rect x="3.5" y="2.5" width="3" height="11" rx="1" /><rect x="9.5" y="2.5" width="3" height="11" rx="1" /></svg>
               <svg class="icon-play" viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 2.8v10.4a.8.8 0 0 0 1.2.7l8.4-5.2a.8.8 0 0 0 0-1.4L5.7 2.1a.8.8 0 0 0-1.2.7Z" /></svg>
+            </button>
+            <button type="button" class="round-toggle sound-toggle muted" id="sound-toggle" aria-label="Turn on the sound">
+              <svg viewBox="0 0 16 16" aria-hidden="true">
+                <path d="M2.5 5.8h2.2L8 3v10L4.7 10.2H2.5a.5.5 0 0 1-.5-.5V6.3a.5.5 0 0 1 .5-.5Z" />
+                <path class="icon-sound-on" d="M10.4 5.6a3.4 3.4 0 0 1 0 4.8M12.3 3.8a6 6 0 0 1 0 8.4" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" />
+                <path class="icon-sound-off" d="m10.5 6.2 3.6 3.6m0-3.6-3.6 3.6" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" />
+              </svg>
             </button>
           </div>
         </div>
@@ -166,10 +174,10 @@
 
             <article class="feature wide reveal">
               <div class="feature-media">
-                <img class="shot" src="/assets/insert-preview.webp" alt="The large preview of an image clip, above the row of cards" width="1920" height="1200" loading="lazy" />
+                <img class="shot ring-only" src="/assets/insert-ring.webp" alt="The clip ring around the pointer, with the app icons of the newest clips and the preview of the selected link" width="1920" height="1200" loading="lazy" />
               </div>
-              <h3>Press Space to see the full clip</h3>
-              <p>The large preview opens above the cards. Move the selection and the preview follows.</p>
+              <h3>Hold Option for the clip ring</h3>
+              <p>Hold <kbd>⌥</kbd> and the 8 newest clips open in a ring around the pointer. Point at a clip to see it, then release <kbd>⌥</kbd> to paste it.</p>
             </article>
 
             <article class="feature reveal">
@@ -199,6 +207,14 @@
               <h3>Select more than one clip</h3>
               <p>Hold <kbd>⇧</kbd> and press the arrow keys to select more clips. Delete them together.</p>
             </article>
+
+            <article class="feature wide reveal">
+              <div class="feature-media">
+                <img class="shot" src="/assets/insert-preview.webp" alt="The large preview of an image clip, above the row of cards" width="1920" height="1200" loading="lazy" />
+              </div>
+              <h3>Press Space to see the full clip</h3>
+              <p>The large preview opens above the cards. Move the selection and the preview follows.</p>
+            </article>
           </div>
 
           <p class="feature-note reveal">Insert stores text, links, files, images, PDFs, rich text, colors, and common media types.</p>
@@ -225,6 +241,7 @@
                 <tr><td>Paste the selected clip</td><td><kbd>Enter</kbd> or double-click</td></tr>
                 <tr><td>Paste as plain text</td><td><kbd>⇧</kbd><kbd>Enter</kbd></td></tr>
                 <tr><td>Copy without paste</td><td><kbd>⌘</kbd><kbd>C</kbd></td></tr>
+                <tr><td>Open the clip ring. Release the key to paste the clip under the pointer.</td><td>Hold <kbd>⌥</kbd><span class="cell-note">You can select ⌘ or ⌃ in Settings.</span></td></tr>
                 <tr><td>Paste card 1 to 9</td><td><kbd>⌘</kbd><kbd>1</kbd> to <kbd>⌘</kbd><kbd>9</kbd></td></tr>
                 <tr><td>Preview</td><td><kbd>Space</kbd></td></tr>
                 <tr><td>Delete the selection</td><td><kbd>⌫</kbd> or <kbd>⌘</kbd><kbd>⌫</kbd></td></tr>
@@ -282,7 +299,7 @@
           <div class="notes reveal">
             <article class="note-card">
               <h3>Before the first paste</h3>
-              <p>Insert pastes with a simulated <span class="keys"><kbd>⌘</kbd><kbd>V</kbd></span>. Turn on Insert in System Settings &gt; Privacy &amp; Security &gt; Accessibility. Without this permission, Insert copies the clip and you paste it.</p>
+              <p>Insert pastes with a simulated <span class="keys"><kbd>⌘</kbd><kbd>V</kbd></span>. Turn on Insert in System Settings &gt; Privacy &amp; Security &gt; Accessibility. Without this permission, Insert copies the clip and you paste it. The clip ring also needs this permission.</p>
             </article>
             <article class="note-card">
               <h3>On Linux</h3>
@@ -397,6 +414,7 @@ make run</code></pre>
 
         const video = document.getElementById("demo-video");
         const toggle = document.getElementById("play-toggle");
+        const sound = document.getElementById("sound-toggle");
         const steps = [...document.querySelectorAll("#demo-steps button")];
         if (!video || steps.length === 0) return;
         // The native controls stay when the script does not run. The play button and the step row replace them.
@@ -415,6 +433,15 @@ make run</code></pre>
         video.addEventListener("pause", showPlayState);
         toggle.addEventListener("click", () => (video.paused ? video.play() : video.pause()));
         showPlayState();
+
+        // Browsers play a video on load only without sound, so the video starts muted.
+        const showSoundState = () => {
+          sound.classList.toggle("muted", video.muted);
+          sound.setAttribute("aria-label", video.muted ? "Turn on the sound" : "Turn off the sound");
+        };
+        video.addEventListener("volumechange", showSoundState);
+        sound.addEventListener("click", () => (video.muted = !video.muted));
+        showSoundState();
 
         const list = document.getElementById("demo-steps");
         const starts = steps.map((step) => Number(step.dataset.at));
