@@ -511,6 +511,13 @@ h2 {
   object-position: bottom;
 }
 
+/* The ring screenshot is the full screen. This card shows only the band with the ring and the preview. */
+.shot.ring-only {
+  aspect-ratio: 1512 / 560;
+  object-fit: cover;
+  object-position: 50% 58%;
+}
+
 .feature-note {
   margin-top: 36px;
   color: var(--muted);
