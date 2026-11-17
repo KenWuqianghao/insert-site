@@ -405,7 +405,7 @@ h1 {
   font-size: 12px;
 }
 
-.play-toggle {
+.round-toggle {
   display: grid;
   flex: none;
   place-items: center;
@@ -418,11 +418,11 @@ h1 {
   cursor: pointer;
 }
 
-.play-toggle:hover {
+.round-toggle:hover {
   background: #dcdce1;
 }
 
-.play-toggle svg {
+.round-toggle svg {
   width: 16px;
   height: 16px;
   fill: currentColor;
@@ -434,6 +434,15 @@ h1 {
 }
 
 .play-toggle.paused .icon-play {
+  display: block;
+}
+
+.sound-toggle .icon-sound-off,
+.sound-toggle.muted .icon-sound-on {
+  display: none;
+}
+
+.sound-toggle.muted .icon-sound-off {
   display: block;
 }
 
